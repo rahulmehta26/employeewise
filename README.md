@@ -2,6 +2,9 @@
 
 EmployeeWise is a full-stack user management system built using **React, Redux Toolkit, and Express.js**. This application allows admins to manage users by updating and deleting them.
 
+## 🌐 Live Demo
+🔗 [EmployeeWise Live](employeewise-six.vercel.app)
+
 ## 🚀 Features
 - View user list
 - Update user details
