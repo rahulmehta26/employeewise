@@ -27,26 +27,25 @@ function LoginPage() {
     });
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     if (data.email.trim().length === 0) {
       toast.error("Email is required");
       return;
-    } else if (data.password.trim().length === 0) {
+    }
+
+    if (data.password.trim().length === 0) {
       toast.error("Password is required");
       return;
-    } else {
-      dispatch(loginUser(data))
-        .unwrap()
-        .then(() => {
-          navigate("/");
-          toast.success("Logged in successfully");
-        })
-        .catch((err) => {
-          console.log(err);
-          toast.error(err.error);
-        });
+    }
+
+    try {
+      await dispatch(loginUser(data)).unwrap();
+      navigate("/");
+      toast.success("Logged in successfully");
+    } catch (err) {
+      toast.error(err.error);
     }
   };
 
@@ -95,7 +94,7 @@ function LoginPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-4 flex items-center text-gray-500"
+                  className="absolute inset-y-0 cursor-pointer right-4 flex items-center text-gray-500"
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
